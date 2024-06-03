@@ -6,9 +6,12 @@ import TodoForm from './TodoForm';
 import TodoItem from './TodoItem';
 
 const TodoList: React.FC = () => {
-    const [todos, setTodos] = useState<string[]>([]);
+    const [todos, setTodos] = useState<{
+        name: string,
+        color: string
+    }[]>([]);
 
-    const addTodo = (todo: string) => {
+    const addTodo = (todo: { name: string, color: string }) => {
         setTodos([...todos, todo]);
     };
 
@@ -21,7 +24,7 @@ const TodoList: React.FC = () => {
     return (
         <div>
             <TodoForm addTodo={addTodo} />
-            <List>
+            <List style={{ maxHeight: "60vh", paddingRight: 20, overflow: "auto"}}>
                 {todos.map((todo, index) => {
                     return (
                         <TodoItem todo={todo} index={index} removeTodo={removeTodo} />

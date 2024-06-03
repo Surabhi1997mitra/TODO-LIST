@@ -11,8 +11,17 @@ It specifies what properties the props object must have and their respective typ
 */
 
 interface TodoFormProps {
-    addTodo: (todo: string) => void;
+    addTodo: (todo: object) => void;
 }
+
+const getRandomColor = (): string => {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
 
 /*
 The line React.FC<TodoFormProps> is used to define a React functional component with specific props in TypeScript. 
@@ -26,7 +35,7 @@ const TodoForm: React.FC<TodoFormProps> = ({ addTodo }) => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (input.trim()) {
-            addTodo(input);
+            addTodo({ name: input, color: getRandomColor() });
             setInput('');
         }
     }

@@ -10,7 +10,9 @@ code {
 }
 
 #root {
-  height: 100%;
-  width: 100%;
-  background-color: #f0f0f0;
+  height: 90vh;
+  width: 90%;
+  margin: auto;
+  border-radius: 2rem;
+  background-color: #eff5f6;
 }
