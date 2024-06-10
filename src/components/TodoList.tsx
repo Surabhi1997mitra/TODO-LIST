@@ -1,19 +1,20 @@
-// This component will manage the list of to-do items.
-
 import React, { useState } from 'react';
 import { List } from '@material-ui/core';
 import TodoForm from './TodoForm';
 import TodoItem from './TodoItem';
 
+// Define a specific type for the todo object
+interface Todo {
+    name: string;
+    color: string;
+}
+
 const TodoList: React.FC = () => {
-    const [todos, setTodos] = useState<{
-        name: string,
-        color: string
-    }[]>([]);
+    const [todos, setTodos] = useState<Todo[]>([]);
 
     const [editIndex, setEditIndex] = useState<number | null>(null);
 
-    const addTodo = (todo: { name: string, color: string }) => {
+    const addTodo = (todo: Todo) => {
         setTodos([...todos, todo]);
     };
 
@@ -24,17 +25,17 @@ const TodoList: React.FC = () => {
     };
 
     const editTodo = (index: number, updatedTodo: string) => {
-        const newTodos = todos.map((todo: { name: string, color: string }, idx) => {
-            if(idx === index) return { name: updatedTodo, color: todo.color }
+        const newTodos = todos.map((todo, idx) => {
+            if (idx === index) return { name: updatedTodo, color: todo.color };
             else return todo;
-        })
+        });
         setTodos(newTodos);
-    }
+    };
 
     return (
         <div>
             <TodoForm addTodo={addTodo} />
-            <List style={{ maxHeight: "60vh", paddingRight: 20, overflow: "auto"}}>
+            <List style={{ maxHeight: "60vh", paddingRight: 20, overflow: "auto" }}>
                 {todos.map((todo, index) => {
                     return (
                         <TodoItem 
@@ -45,7 +46,7 @@ const TodoList: React.FC = () => {
                             editIndex={editIndex}
                             setEditIndex={setEditIndex}
                         />
-                    )
+                    );
                 })}
             </List>
         </div>

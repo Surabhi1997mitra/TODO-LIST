@@ -1,5 +1,3 @@
-// This component will display individual to-do items.
-
 import React from 'react';
 import { ListItem, ListItemText, IconButton, TextField } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -13,8 +11,8 @@ interface TodoItemProps {
     index: number,
     removeTodo: (index: number) => void,
     editTodo: (index: number, updatedTodo: string) => void,
-    editIndex: number | any,
-    setEditIndex: (index: number) => void;
+    editIndex: number | null,
+    setEditIndex: (index: number | null) => void;
 }
 
 const TodoItem: React.FC<TodoItemProps> = ({ todo, index, editTodo, removeTodo, editIndex, setEditIndex }) => {

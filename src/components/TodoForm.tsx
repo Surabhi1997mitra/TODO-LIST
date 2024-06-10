@@ -10,8 +10,13 @@ TodoFormProps is an interface (or type alias) that defines the shape of the prop
 It specifies what properties the props object must have and their respective types.
 */
 
+// Defining a specific type for the todo object
+interface Todo {
+    name: string;
+    color: string;
+}
 interface TodoFormProps {
-    addTodo: (todo: object) => void;
+    addTodo: (todo: Todo) => void;
 }
 
 const getRandomColor = (): string => {
